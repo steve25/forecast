@@ -9,7 +9,7 @@
 
 <style scoped>
 header {
-  margin-top: 5rem;
+  margin-top: 4rem;
   margin-bottom: 3rem;
   text-align: center;
   color: rgb(240, 240, 240);

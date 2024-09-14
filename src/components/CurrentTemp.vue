@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import TempBox from './TempBox.vue'
+import TempBox from './TempBox.vue';
 
-const { temp } = defineProps(['temp'])
+defineProps(['temp']);
 </script>
 
 <style scoped>

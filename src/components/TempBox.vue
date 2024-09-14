@@ -16,13 +16,13 @@
 </template>
 
 <script setup>
-const { temp, min, max, date, type } = defineProps(['temp', 'min', 'max', 'date', 'type'])
+const { temp, min, max, date, type } = defineProps(['temp', 'min', 'max', 'date', 'type']);
 
 const parsedDate = () => {
-  const units = date.split('-')
+  const units = date.split('-');
 
-  return units[1] + '. ' + units[2] + '.'
-}
+  return units[2] + '. ' + units[1] + '.';
+};
 </script>
 
 <style scoped>
