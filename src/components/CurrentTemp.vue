@@ -1,11 +1,11 @@
 <template>
   <div class="current">
-    <CurrentBox :temp="temp" />
+    <TempBox :temp="temp" type="single" />
   </div>
 </template>
 
 <script setup>
-import CurrentBox from './CurrentBox.vue'
+import TempBox from './TempBox.vue'
 
 const { temp } = defineProps(['temp'])
 </script>

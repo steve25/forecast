@@ -1,17 +1,18 @@
 <template>
   <div class="forecast">
-    <ForecastBox
+    <TempBox
       v-for="(day, index) in props.forecast"
       :key="index"
       :min="day.min"
       :max="day.max"
       :date="day.date"
+      type="multi"
     />
   </div>
 </template>
 
 <script setup>
-import ForecastBox from './ForecastBox.vue'
+import TempBox from './TempBox.vue'
 
 const props = defineProps(['forecast'])
 </script>

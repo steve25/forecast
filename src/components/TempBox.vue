@@ -1,5 +1,12 @@
 <template>
-  <section>
+  <section v-if="type == 'single'">
+    <h4>
+      current <br />
+      temp
+    </h4>
+    <p>{{ temp }} °C</p>
+  </section>
+  <section v-else>
     <h4>
       {{ parsedDate() }}
     </h4>
@@ -9,7 +16,7 @@
 </template>
 
 <script setup>
-const { min, max, date } = defineProps(['min', 'max', 'date'])
+const { temp, min, max, date, type } = defineProps(['temp', 'min', 'max', 'date', 'type'])
 
 const parsedDate = () => {
   const units = date.split('-')
