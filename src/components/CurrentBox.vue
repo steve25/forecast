@@ -1,29 +1,15 @@
 <template>
   <section>
-    <div v-if="type === 'actual'">
-      <h4>
-        current <br />
-        temp
-      </h4>
-      <p>{{ temp }} °C</p>
-    </div>
-    <div v-else>
-      <h4>
-        {{ parsedDate() }}
-      </h4>
-      <p>{{ max }} °C</p>
-      <p>{{ min }} °C</p>
-    </div>
+    <h4>
+      current <br />
+      temp
+    </h4>
+    <p>{{ temp }} °C</p>
   </section>
 </template>
 
 <script setup>
-const { type, temp, min, max, date } = defineProps(['type', 'temp', 'min', 'max', 'date'])
-
-const parsedDate = () => {
-  const units = date.split('-')
-  return units[1] + '. ' + units[2] + '.'
-}
+const { temp } = defineProps(['temp'])
 </script>
 
 <style scoped>
