@@ -17,7 +17,7 @@ section {
   border: 2px solid #0c0c0c;
   border-radius: 0.3rem;
   text-align: center;
-  background-color: #ffffff83;
+  background-color: #ffffffae;
   padding: 0.8rem;
 }
 
