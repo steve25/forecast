@@ -1,12 +1,12 @@
 <template>
-  <section v-if="type == 'single'">
+  <section class="current-section" v-if="type == 'single'">
     <h4>
       current <br />
       temp
     </h4>
     <p>{{ temp }} °C</p>
   </section>
-  <section v-else>
+  <section class="forecast-section" v-else>
     <h4>
       {{ parsedDate() }}
     </h4>
@@ -31,7 +31,6 @@ section {
   border-radius: 0.3rem;
   text-align: center;
   background-color: #ffffffae;
-  padding: 0.8rem;
 }
 
 h4 {
@@ -43,6 +42,14 @@ h4 {
 P {
   font-size: 1.6rem;
   font-weight: bolder;
+}
+
+.current-section {
+  padding: 1.1rem;
+}
+
+.forecast-section {
+  padding: 0.8rem;
 }
 
 @media screen and (max-width: 850px) {
@@ -66,10 +73,11 @@ P {
 }
 
 @media screen and (max-width: 660px) {
-  section {
+  .current-section,
+  .forecast-section {
     width: fit-content;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   h4 {

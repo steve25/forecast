@@ -2,6 +2,7 @@ body {
   margin: 0;
   background-color: aliceblue;
   background-image: url('./nitra.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: 25% top;
   background-attachment: fixed;
