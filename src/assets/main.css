@@ -1,4 +1,5 @@
 body {
+  height: 100dvh;
   margin: 0;
   background-color: aliceblue;
   background-image: url('./nitra.jpg');
