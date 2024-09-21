@@ -1,28 +1,12 @@
 <template>
   <nav>
     <ul>
-      <li :class="choosedMounted ? 'choosed' : ''" @click="onMountedClick">onMounted</li>
+      <li><RouterLink to="/">onMounted</RouterLink></li>
       <li>|</li>
-      <li :class="choosedMounted ? '' : 'choosed'" @click="onClickClick">onClick</li>
+      <li><RouterLink to="/onclick">onClick</RouterLink></li>
     </ul>
   </nav>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-const choosedMounted = ref(true);
-const emit = defineEmits(['page']);
-
-const onMountedClick = () => {
-  choosedMounted.value = true;
-  emit('page', choosedMounted);
-};
-
-const onClickClick = () => {
-  choosedMounted.value = false;
-  emit('page', choosedMounted);
-};
-</script>
 
 <style scoped>
 nav {
@@ -38,12 +22,17 @@ ul {
   gap: 1rem;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 li:first-child,
 li:last-child {
   cursor: pointer;
 }
 
-.choosed {
+.router-link-active {
   text-decoration: underline;
 }
 </style>

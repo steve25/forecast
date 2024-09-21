@@ -2,11 +2,12 @@
   <main>
     <div class="load-button">
       <button @click="loadData">{{ loaded ? 'Refresh' : 'Load' }} data</button>
+      <p v-if="loaded">refreshed: {{ dateTime }}</p>
     </div>
 
     <div v-if="loaded">
-      <CurrentTemp :temp="actualTemp" />
-      <ForecastTemp :forecast="forecast" />
+      <CurrentTemp :temp="actualTempValue" />
+      <ForecastTemp :forecast="forecastValues" />
     </div>
   </main>
 </template>
@@ -16,31 +17,31 @@ import CurrentTemp from '../components/CurrentTemp.vue';
 import ForecastTemp from '../components/ForecastTemp.vue';
 
 import { ref } from 'vue';
-import axios from 'axios';
+import { actualTemp, forecastTemps } from '@/api';
 
-const actualTemp = ref(0);
-const forecast = ref([]);
+const actualTempValue = ref(0);
+const forecastValues = ref([]);
 const loaded = ref(false);
+const dateTime = ref('');
 
 const loadData = async () => {
-  forecast.value = [];
-  const response = await axios.get(
-    'https://api.open-meteo.com/v1/forecast?latitude=48.3&longitude=18.07&current=temperature_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin'
-  );
-
-  actualTemp.value = response.data.current.temperature_2m;
-  createForecastData(response.data.daily);
+  forecastValues.value = [];
+  actualTempValue.value = await actualTemp();
+  forecastValues.value = await forecastTemps();
   loaded.value = true;
+
+  dateTime.value = formateDate(new Date());
 };
 
-const createForecastData = (data) => {
-  for (let index = 0; index < 6; index++) {
-    forecast.value.push({
-      date: data.time[index],
-      max: data.temperature_2m_max[index],
-      min: data.temperature_2m_min[index]
-    });
-  }
+const formateDate = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+
+  return `${day}/${month}/${year} ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 };
 </script>
 
@@ -60,5 +61,15 @@ button {
   padding: 0.7rem 0.9rem;
   background-color: azure;
   cursor: pointer;
+}
+p {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.3rem;
+  border: 2px solid #1c1c1c;
+  background-color: #1c1c1cbd;
+  color: rgb(244, 244, 244);
 }
 </style>

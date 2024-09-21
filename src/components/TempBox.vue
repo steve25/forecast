@@ -10,8 +10,16 @@
     <h4>
       {{ parsedDate() }}
     </h4>
-    <p>{{ max }} °C</p>
-    <p>{{ min }} °C</p>
+    <div>
+      <p>
+        <span>{{ max }}</span>
+        <span>°C</span>
+      </p>
+      <p>
+        <span>{{ min }}</span>
+        <span>°C</span>
+      </p>
+    </div>
   </section>
 </template>
 
@@ -42,6 +50,14 @@ h4 {
 P {
   font-size: 1.6rem;
   font-weight: bolder;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+span:first-child {
+  width: 100%;
+  text-align: right;
 }
 
 .current-section {

@@ -1,23 +1,21 @@
 <template>
-  <MyNavigation @page="onUpdatePage" />
+  <MyNavigation />
   <TheHeader />
-  <MainOnmounted v-if="isOnMountedPage" />
-  <MainOnclick v-else />
+
+  <RouterView v-slot="{ Component }">
+    <KeepAlive>
+      <component :is="Component" />
+    </KeepAlive>
+  </RouterView>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
 import TheHeader from './views/TheHeader.vue';
-import MainOnmounted from './views/MainOnmounted.vue';
 import MyNavigation from './views/MyNavigation.vue';
-import MainOnclick from './views/MainOnclick.vue';
-
-const isOnMountedPage = ref(true);
-
-const onUpdatePage = (e) => {
-  isOnMountedPage.value = e.value;
-};
 </script>
 
-<style scoped></style>
+<style>
+body {
+  margin-bottom: 2rem;
+}
+</style>
